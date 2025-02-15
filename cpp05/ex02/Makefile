@@ -15,9 +15,9 @@ WARNING_EMOJI=⚠️
 ERROR_EMOJI=❌
 COOL_EMOJI=😎
 
-NAME = formToSign
+NAME = doSomethingToForm
 
-SRCS = main.cpp Bureaucrat.cpp Form.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
 
@@ -41,6 +41,8 @@ ${NAME}: ${OBJS}
 clean:
 	@echo "${CLEAN_EMOJI} ${MAGENTA}Cleaning files...${RESET}"
 	@${RM} ${OBJS} ${DEPS}
+	@${RM} *_shrubbery
+
 
 fclean: clean
 	@echo "${RECYCLE_EMOJI} ${YELLOW} Removing executable...${RESET}"

@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 //validacion de grado
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name) {
@@ -38,13 +38,23 @@ void Bureaucrat::decrementGrade(){
     this->grade++;
 }
 
-void Bureaucrat::signForm(Form &f){
-    try{
+void Bureaucrat::signForm(AForm &f) {
+    try {
         f.beSigned(*this);
         std::cout << name << " signed " << f.getName() << std::endl;
     }
-    catch(std::exception &e){
+    catch(std::exception &e) {
         std::cout << name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
+    }
+}
+
+void Bureaucrat::executeForm(AForm const & form){
+    try{
+        form.execute(*this);
+        std::cout << name << " executes " << form.getName() << std::endl;
+    }
+    catch(std::exception &e){
+        std::cout << name << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
     }
 }
 

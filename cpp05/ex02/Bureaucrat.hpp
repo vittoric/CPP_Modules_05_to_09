@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 
-class Form;
+class AForm;
 
 class Bureaucrat {
     private:
@@ -37,7 +37,8 @@ class Bureaucrat {
         void incrementGrade();
         void decrementGrade();
 
-        void signForm(Form &f);
+        void signForm(AForm &f);
+        void	executeForm(AForm const & form);
 
         //sobrecarga del operador <<
         friend std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);

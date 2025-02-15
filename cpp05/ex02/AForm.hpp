@@ -1,10 +1,10 @@
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 #include <iostream>
 #include <stdexcept>
 #include "Bureaucrat.hpp"
 
-class Form{
+class AForm{
     private:
         const std::string name;
         bool isSigned;
@@ -26,8 +26,15 @@ class Form{
                 }
         };
 
-        Form(std::string name, int gradeToSign, int gradeToExecute);
-        ~Form();
+        class FormNotSignedException : public std::exception{
+            public:
+                const char* what() const throw(){
+                    return "Form is not signed!";
+                }
+        };
+
+        AForm(std::string name, int gradeToSign, int gradeToExecute);
+        virtual ~AForm();
 
         //geters
         std::string getName() const;
@@ -37,8 +44,9 @@ class Form{
 
         //metodos
         void beSigned(const Bureaucrat &b);
+        virtual void execute(Bureaucrat const & executor) const = 0; //metodo abrstacto
 
-        friend std::ostream& operator<<(std::ostream& os, const Form& f);
+        friend std::ostream& operator<<(std::ostream& os, const AForm& f);
 
 };
 

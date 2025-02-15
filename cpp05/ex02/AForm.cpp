@@ -1,7 +1,7 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
 //constructor con validacion de grado
-Form::Form(std::string name, int gradeToSign, int gradeToExecute)
+AForm::AForm(std::string name, int gradeToSign, int gradeToExecute)
     : name(name), isSigned(false), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute) {
         if (gradeToSign < 1 || gradeToExecute < 1){
             throw GradeTooHighException();
@@ -11,36 +11,37 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute)
         }
     }
 
-Form::~Form(){}
+AForm::~AForm(){}
 
 //geters
-std::string Form::getName() const{
+std::string AForm::getName() const{
     return name;
 }  
-bool Form::getIsSigned() const{
+bool AForm::getIsSigned() const {
     return isSigned;
-}  
+}
 
-int Form::getGradeToSign() const{
+int AForm::getGradeToSign() const{
     return gradeToSign;
 }
 
-int Form::getGradeToExecute() const{
+int AForm::getGradeToExecute() const{
     return gradeToExecute;
 }
 
 //metodos
-void Form::beSigned(const Bureaucrat &b){
+void AForm::beSigned(const Bureaucrat &b){
     if (b.getGrade() > gradeToSign){
         throw GradeTooLowException();
     }
     isSigned = true;
 }
 
-std::ostream& operator<<(std::ostream& os, const Form& f){
-    os << "Form: " << f.getName() 
+std::ostream& operator<<(std::ostream& os, const AForm& f){
+    os << "AForm: " << f.getName() 
        << " | Signed: " << (f.getIsSigned() ? "Yes" : "No") 
        << " | Grade required to sign: " << f.getGradeToSign()
        << " | Grade required to execute: " << f.getGradeToExecute();
     return os;
 }
+

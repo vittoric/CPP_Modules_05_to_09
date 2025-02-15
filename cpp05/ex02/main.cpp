@@ -1,29 +1,49 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include <iostream>
 
 int main() {
     try {
-        Bureaucrat b1("Rick", 2);
-        Bureaucrat b2("Morty", 150);
+        Bureaucrat alice("Alice", 1);
+        Bureaucrat bob("Bob", 50);
+        Bureaucrat charlie("Charlie", 150);
 
-        std::cout << b1 << std::endl;
-        std::cout << b2 << std::endl;
+        ShrubberyCreationForm shrubbery("Garden");
+        RobotomyRequestForm robotomy("Bender");
+        PresidentialPardonForm pardon("Bob the Criminal");
 
-        Form f1("Destroy Planet E458", 5, 10);
-        Form f2("LAse Gun", 1, 2);
+        std::cout << "\n--- Initial Form Status ---\n";
+        std::cout << shrubbery << std::endl;
+        std::cout << robotomy << std::endl;
+        std::cout << pardon << std::endl;
 
-        std::cout << f1 << std::endl;
-        std::cout << f2 << std::endl;
+        std::cout << "\n--- Signing Forms ---\n";
+      
+        alice.signForm(robotomy);
+        alice.signForm(pardon);
+        std::cout << std::endl;
+        bob.signForm(robotomy);
+        bob.signForm(pardon);
+        std::cout << std::endl;
+        charlie.signForm(shrubbery);
+        charlie.signForm(robotomy);
+        charlie.signForm(pardon);
 
-        // Intentar firmar con Bureaucrat1 (debería firmar f1, pero no f2)
-        b1.signForm(f1);
-        b1.signForm(f2);
+        std::cout << "\n--- Executing Forms ---\n";
+        bob.executeForm(shrubbery);
+        std::cout << std::endl;
+        alice.executeForm(robotomy);
+        std::cout << std::endl;
+        alice.executeForm(pardon);
 
-        std::cout << f1 << std::endl;
-        std::cout << f2 << std::endl;
+        std::cout << "\n--- Trying to execute without signing ---\n";
+        bob.executeForm(shrubbery); // No debería ejecutarse
     }
     catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cerr << "Exception: " << e.what() << std::endl;
     }
 
     return 0;
