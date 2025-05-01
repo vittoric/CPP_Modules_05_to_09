@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 
-class Form;
+class Form; //Forward Declaration para evitar el error de compilación circular
 
 class Bureaucrat {
     private:

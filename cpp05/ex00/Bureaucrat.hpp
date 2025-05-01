@@ -8,7 +8,8 @@ class Bureaucrat {
         const std::string name;
         int grade;
     public:
-        //Exepciones personalizadas
+        //Exepciones personalizadas con metodos virtuales
+        //que heredan de la clase exception
         class GradeTooHighException : public std::exception {
             public:
                 const char* what() const throw(){

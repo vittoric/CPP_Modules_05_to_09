@@ -43,10 +43,37 @@ int main() {
         std::cout << "\n👉 Trying to Execute Without Signing:\n";
         charlie.executeForm(*form2); // Charlie no debería poder ejecutarlo
 
+        std::cout << "\n🔹🔹🔹 Testing Grade Limits 🔹🔹🔹\n" << std::endl;
+        
+        // Test para ShrubberyCreationForm (145/137)
+        Bureaucrat test1("Test1", 146); // Debería fallar al firmar
+        Bureaucrat test2("Test2", 138); // Debería fallar al ejecutar
+        test1.signForm(*form2);
+        test2.executeForm(*form2);
+
+        // Test para RobotomyRequestForm (72/45)
+        Bureaucrat test3("Test3", 73);  // Debería fallar al firmar
+        Bureaucrat test4("Test4", 46);  // Debería fallar al ejecutar
+        test3.signForm(*form1);
+        test4.executeForm(*form1);
+
+        // Test para PresidentialPardonForm (25/5)
+        Bureaucrat test5("Test5", 26);  // Debería fallar al firmar
+        Bureaucrat test6("Test6", 6);   // Debería fallar al ejecutar
+        test5.signForm(*form3);
+        test6.executeForm(*form3);
+
+        std::cout << "\n🔹🔹🔹 Testing Multiple Robotomy Executions 🔹🔹🔹\n" << std::endl;
+        alice.signForm(*form1);
+        for(int i = 0; i < 5; i++) {
+            std::cout << "Attempt " << i + 1 << ": ";
+            alice.executeForm(*form1);}
+
     }
     catch (std::exception &e) {
         std::cerr << "❌ Exception: " << e.what() << std::endl;
     }
+    
 
     return 0;
 }
