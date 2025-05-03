@@ -45,9 +45,7 @@ class AForm{
         //metodos
         void beSigned(const Bureaucrat &b);
         virtual void execute(Bureaucrat const & executor) const = 0; //metodo abrstacto
-
-        friend std::ostream& operator<<(std::ostream& os, const AForm& f);
-
 };
 
+    std::ostream& operator<<(std::ostream& os, const AForm& f);
 #endif

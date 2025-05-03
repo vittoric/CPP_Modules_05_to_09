@@ -37,7 +37,9 @@ class Bureaucrat {
         void decrementGrade();
 
         //sobrecarga del operador <<
-        friend std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
-};
+        
+    };
+
+    std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
 
 #endif

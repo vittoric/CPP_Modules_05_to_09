@@ -37,9 +37,8 @@ class Form{
 
         //metodos
         void beSigned(const Bureaucrat &b);
-
-        friend std::ostream& operator<<(std::ostream& os, const Form& f);
-
 };
+
+std::ostream& operator<<(std::ostream& os, const Form& f);
 
 #endif

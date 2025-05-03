@@ -3,6 +3,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include <iostream>
+#include <fstream>  // Para leer el archivo
 
 int main() {
     try {
@@ -67,13 +68,40 @@ int main() {
         alice.signForm(*form1);
         for(int i = 0; i < 5; i++) {
             std::cout << "Attempt " << i + 1 << ": ";
-            alice.executeForm(*form1);}
+            alice.executeForm(*form1);
+        }
 
+        // Crear un formulario Shrubbery para Bender y ejecutarlo
+        AForm *benderForm = intern.makeForm("shrubbery creation", "Bender");
+        if (benderForm) {
+            std::cout << "\n🔹🔹🔹 Creating Bender's Shrubbery 🔹🔹🔹\n" << std::endl;
+            alice.signForm(*benderForm);
+            alice.executeForm(*benderForm);
+            
+            // Mostrar el contenido del archivo Bender_shrubbery
+            std::cout << "\n🔹🔹🔹 Contenido del archivo Bender_shrubbery 🔹🔹🔹\n" << std::endl;
+            std::ifstream file("Bender_shrubbery");
+            if (file.is_open()) {
+                std::string line;
+                while (getline(file, line)) {
+                    std::cout << line << std::endl;
+                }
+                file.close();
+            } else {
+                std::cerr << "❌ No se pudo abrir el archivo Bender_shrubbery" << std::endl;
+            }
+            
+            delete benderForm;
+        }
+
+        // Liberar memoria
+        delete form1;
+        delete form2;
+        delete form3;
     }
     catch (std::exception &e) {
         std::cerr << "❌ Exception: " << e.what() << std::endl;
     }
-    
 
     return 0;
 }
