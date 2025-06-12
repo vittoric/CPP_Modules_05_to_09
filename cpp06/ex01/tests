@@ -1,0 +1,49 @@
+#  Caracteres (char)
+./convert 'a'     # Carácter normal
+./convert '0'     # Carácter numérico
+./convert ' '     # Espacio
+./convert '\t'    # Tab (no imprimible)
+./convert '\n'    # Salto de línea (no imprimible)
+
+#  Enteros (int)
+./convert 0       # Cero
+./convert 42      # Positivo
+./convert -42     # Negativo
+./convert 127     # Límite ASCII imprimible
+./convert 128     # Fuera del rango ASCII imprimible
+./convert 2147483647  # INT_MAX
+./convert -2147483648 # INT_MIN
+
+#  Flotantes (float)
+./convert 0.0f        # Cero
+./convert 4.2f        # Positivo con decimales
+./convert -4.2f       # Negativo con decimales
+./convert 42.0f       # Entero como float
+./convert 0.00001f    # Número muy pequeño
+./convert 3.40282e+38f # Cerca de FLT_MAX
+./convert nanf        # Not a Number (float)
+./convert +inff       # Infinito positivo (float)
+./convert -inff       # Infinito negativo (float)
+
+# Dobles (double)
+./convert 0.0         # Cero
+./convert 4.2         # Positivo con decimales
+./convert -4.2        # Negativo con decimales
+./convert 42.0        # Entero como double
+./convert 0.00000001  # Número muy pequeño
+./convert 1.79769e+308 # Cerca de DBL_MAX
+./convert nan         # Not a Number (double)
+./convert +inf        # Infinito positivo (double)
+./convert -inf        # Infinito negativo (double)
+
+#  Casos especiales y límites
+./convert ""          # Cadena vacía (debería dar error)
+./convert "abc"       # Cadena inválida
+./convert "42abc"     # Mezcla de números y letras
+./convert "42.0abc"   # Mezcla de float y letras
+./convert 3.14159265359 # Pi con muchos decimales
+./convert 2.71828182845 # e con muchos decimales
+
+#  Casos de conversión imposible
+./convert 1000000000000000000000.0  # Número demasiado grande para int
+./convert -1000000000000000000000.0 # Número demasiado pequeño para int
