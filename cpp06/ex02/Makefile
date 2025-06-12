@@ -15,9 +15,9 @@ WARNING_EMOJI=⚠️
 ERROR_EMOJI=❌
 COOL_EMOJI=😎
 
-NAME = cast
+NAME = real_type
 
-SRCS = main.cpp 
+SRCS = main.cpp Identify.cpp Base.cpp 
 OBJ_DIR = obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
 DEPS = $(OBJS:.o=.d)
@@ -25,7 +25,7 @@ DEPS = $(OBJS:.o=.d)
 CC = c++
 RM = rm -f
 MKDIR = mkdir -p
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS =  -Wall -Wextra -Werror -std=c++98 -pedantic
 CPPFLAGS = -MMD -MP
 
 all: $(OBJ_DIR) ${NAME}
